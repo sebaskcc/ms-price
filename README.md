@@ -1,2 +1,2 @@
-# ms-price
+# ms-prices
 Technical test
