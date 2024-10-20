@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: Prices
+  version: '1.0'
+servers:
+  - url: 'http://localhost:8080/v1'
+paths:
+  /price:
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/GetPriceResponse'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+        - $ref: '#/components/parameters/applyDate'
+        - $ref: '#/components/parameters/productId'
+        - $ref: '#/components/parameters/brandId'
+      operationId: GetPrice
+      description: 'Given a product, get its price'
+components:
+  schemas:
+    price:
+      type: object
+      x-examples:
+        Example 1:
+          productId: 0
+          brandId: 0
+          rateId: 0
+          startDate: '2019-08-24T14:15:22Z'
+          endDate: '2019-08-24T14:15:22Z'
+          price: 0
+      properties:
+        productId:
+          type: integer
+          format: int64
+          minimum: 0
+        brandId:
+          type: integer
+          minimum: 1
+          maximum: 14
+        rateId:
+          type: integer
+          minimum: 0
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        price:
+          type: number
+          minimum: 0
+      x-stoplight:
+        id: eef47658e3d75
+      title: price
+    error:
+      title: error
+      x-stoplight:
+        id: hndffjtwdqbcf
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+  parameters:
+    applyDate:
+      name: applyDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date-time
+    productId:
+      name: productId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 0
+    brandId:
+      name: brandId
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 14
+  responses:
+    GetPriceResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/price'
