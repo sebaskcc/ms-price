@@ -12,4 +12,20 @@
   <artifactId>application</artifactId>
   <name>ms-prices-application</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.test</groupId>
+      <artifactId>domain</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>
