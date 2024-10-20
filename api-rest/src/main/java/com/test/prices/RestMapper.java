@@ -6,13 +6,11 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Optional;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.openapitools.model.PriceDTO;
 
 @Mapper
 public interface RestMapper {
 
-  @Mapping(target = "rateId", source = "priceList")
   PriceDTO fromDomain(Price priceEntity);
 
   default OffsetDateTime instantToOffsetDateTime(Instant instant) {
