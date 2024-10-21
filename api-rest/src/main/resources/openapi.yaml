@@ -12,6 +12,10 @@ paths:
           $ref: '#/components/responses/GetPriceResponse'
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: Not Found
           content:
@@ -42,11 +46,11 @@ components:
       type: object
       x-examples:
         Example 1:
-          productId: 0
-          brandId: 0
-          rateId: 0
-          startDate: '2019-08-24T14:15:22Z'
-          endDate: '2019-08-24T14:15:22Z'
+          productId: 35455
+          brandId: 1
+          priceList: 10
+          startDate: '2020-06-14T14:00:00Z'
+          endDate: '2019-08-15T20:00:00Z'
           price: 0
       properties:
         productId:
@@ -57,7 +61,7 @@ components:
           type: integer
           minimum: 1
           maximum: 14
-        rateId:
+        priceList:
           type: integer
           minimum: 0
         startDate:
@@ -69,13 +73,9 @@ components:
         price:
           type: number
           minimum: 0
-      x-stoplight:
-        id: eef47658e3d75
       title: price
     error:
       title: error
-      x-stoplight:
-        id: hndffjtwdqbcf
       type: object
       properties:
         status:
